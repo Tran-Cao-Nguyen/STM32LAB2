@@ -591,8 +591,6 @@ int main(void)
  80004ae:	2110      	movs	r1, #16
  80004b0:	4848      	ldr	r0, [pc, #288]	; (80005d4 <main+0x17c>)
  80004b2:	f000 fdb5 	bl	8001020 <HAL_GPIO_TogglePin>
-
-
 	  }
 
 	  if (timer3_flag == 1)
@@ -704,8 +702,8 @@ int main(void)
 		  		break;
  800058a:	e01e      	b.n	80005ca <main+0x172>
 		  	case 4:
-		  		status = 0;
- 800058c:	2300      	movs	r3, #0
+		  		status = 1;
+ 800058c:	2301      	movs	r3, #1
  800058e:	607b      	str	r3, [r7, #4]
 		  		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, 1);
  8000590:	2201      	movs	r2, #1
