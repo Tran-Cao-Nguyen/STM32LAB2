@@ -222,6 +222,8 @@ int main(void)
 				  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 0);
 				  display7SEG(2);
 				  break;
+		  	  default:
+		  		  break;
 
 		  }
 
