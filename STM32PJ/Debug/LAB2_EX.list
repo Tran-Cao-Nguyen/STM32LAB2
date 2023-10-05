@@ -621,8 +621,8 @@ int main(void)
   setTimer1(100);
  80004dc:	2064      	movs	r0, #100	; 0x64
  80004de:	f000 f99b 	bl	8000818 <setTimer1>
-  setTimer2(50);
- 80004e2:	2032      	movs	r0, #50	; 0x32
+  setTimer2(25);
+ 80004e2:	2019      	movs	r0, #25
  80004e4:	f000 f9ac 	bl	8000840 <setTimer2>
   int status = 1;
  80004e8:	2301      	movs	r3, #1
@@ -656,8 +656,8 @@ int main(void)
  800050e:	2b01      	cmp	r3, #1
  8000510:	d1ec      	bne.n	80004ec <main+0x30>
 	  {
-		  setTimer2(50);
- 8000512:	2032      	movs	r0, #50	; 0x32
+		  setTimer2(25);
+ 8000512:	2019      	movs	r0, #25
  8000514:	f000 f994 	bl	8000840 <setTimer2>
  8000518:	683b      	ldr	r3, [r7, #0]
  800051a:	3b01      	subs	r3, #1

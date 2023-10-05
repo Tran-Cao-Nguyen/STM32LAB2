@@ -226,7 +226,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
   setTimer1(100);
-  setTimer2(50);
+  setTimer2(25);
   int status = 1;
   while (1)
   {
@@ -241,7 +241,7 @@ int main(void)
 	  }
 	  if (timer2_flag == 1)
 	  {
-		  setTimer2(50);
+		  setTimer2(25);
 		  switch (status)
 		 		  {
 		 		  	case 1:
