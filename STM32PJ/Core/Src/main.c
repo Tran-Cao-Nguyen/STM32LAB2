@@ -163,7 +163,8 @@ void display7SEG(int num)
 }
 
 const int MAX_LED = 4;
-int led_buffer [4] = {1, 0, 2, 8};
+int led_buffer [4] = {1, 0, 5, 8};
+int hour = 15, minute = 8, second = 58;
 void update7SEG ( int index ){
 	switch ( index ){
 	case 0:
@@ -233,7 +234,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int hour = 15, minute = 8, second = 50;
+
   while (1)
   {
 	  second++;
