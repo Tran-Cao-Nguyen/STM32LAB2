@@ -56,6 +56,21 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+int timer0_counter = 0;
+int timer0_flag = 0;
+int TIMER_CYCLE = 10;
+void setTimer0 ( int duration ){
+	timer0_counter = duration / TIMER_CYCLE ;
+	timer0_flag = 0;
+}
+void timer_run (){
+	if( timer0_counter > 0){
+		timer0_counter --;
+		if( timer0_counter == 0) timer0_flag = 1;
+	}
+}
+
 // display 7 SEG
 void display7SEG(int num)
 {
@@ -251,9 +266,13 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   updateClockBuffer();
+  setTimer0(1000);
   while (1)
   {
-
+	  if( timer0_flag == 1){
+		  HAL_GPIO_TogglePin ( LED_RED_GPIO_Port , LED_RED_Pin );
+	  	  setTimer0(2000);
+	  }
 	  second++;
 	  if (second >= 60){
 		  second = 0;
@@ -402,6 +421,7 @@ int counter2 = 25;
 int index_led = 0;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim)
 {
+	timer_run();
 	counter1--;
 	counter2--;
 	if (counter1 <= 0)
@@ -409,12 +429,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim)
 		counter1 = 100;
 		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 
-
 	}
 	if (counter2 <= 0)
 	{
 		counter2 = 25;
-		HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 		switch (index_led)
 		{
 			case 0:
