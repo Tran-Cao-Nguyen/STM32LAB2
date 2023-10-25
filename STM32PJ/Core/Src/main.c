@@ -434,7 +434,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim)
 
 		}
 		index_led++;
-		if (index_led >= 4) index_led = 0;
+		if (index_led >= MAX_LED) index_led = 0;
 
 	}
 }
