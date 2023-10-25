@@ -253,7 +253,6 @@ int main(void)
 
   setTimer1(100);
   setTimer2(50);
-  int status = 1;
   updateClockBuffer ();
   while (1)
   {
@@ -281,14 +280,15 @@ int main(void)
 			  hour = 0;
 		  }
 		  updateClockBuffer ();
-
-
 	  }
 	  if (timer2_flag == 1)
 	  {
 		  setTimer2(25);
-		  switch (status)
+		  switch (index_led)
 		  {
+		  	  case 0:
+		 		  update7SEG(index_led);
+		 		  break;
 		  	  case 1:
 		 		  update7SEG(index_led);
 		 		  break;
@@ -298,17 +298,12 @@ int main(void)
 		  	  case 3:
 		 		  update7SEG(index_led);
 		 		  break;
-		  	  case 4:
-		 		  update7SEG(index_led);
-		 		  break;
 		  	  default:
 		 		  break;
 
 		 	}
-		  status++;
-		  if (status > 4) status = 1;
 		  index_led++;
-		  if (index_led >= 4) index_led = 0;
+		  if (index_led >= MAX_LED) index_led = 0;
 
 	  }
 
