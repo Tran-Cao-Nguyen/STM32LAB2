@@ -221,7 +221,6 @@ void updateClockBuffer ()
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	int index_led = 0;
 
   /* USER CODE END 1 */
 
@@ -252,7 +251,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
   setTimer1(100);
-  setTimer2(50);
   updateClockBuffer ();
   while (1)
   {
@@ -281,36 +279,6 @@ int main(void)
 		  }
 		  updateClockBuffer ();
 	  }
-	  if (timer2_flag == 1)
-	  {
-		  setTimer2(25);
-		  switch (index_led)
-		  {
-		  	  case 0:
-		 		  update7SEG(index_led);
-		 		  break;
-		  	  case 1:
-		 		  update7SEG(index_led);
-		 		  break;
-		  	  case 2:
-		 		  update7SEG(index_led);
-		 		  break;
-		  	  case 3:
-		 		  update7SEG(index_led);
-		 		  break;
-		  	  default:
-		 		  break;
-
-		 	}
-		  index_led++;
-		  if (index_led >= MAX_LED) index_led = 0;
-
-	  }
-
-
-
-
-
 
     /* USER CODE END WHILE */
 
@@ -441,9 +409,39 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+int index_led = 0;
+int counter = 25;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim)
 {
 	timerRun();
+	if (counter > 0)
+	{
+		counter--;
+		if (counter <= 0)
+		{
+			counter = 25;
+			switch (index_led)
+				{
+					case 0:
+						 update7SEG(index_led);
+						 break;
+					case 1:
+						 update7SEG(index_led);
+						 break;
+					case 2:
+						 update7SEG(index_led);
+						 break;
+					case 3:
+						 update7SEG(index_led);
+						 break;
+					default:
+						 break;
+				}
+			index_led++;
+			if (index_led >= MAX_LED) index_led = 0;
+		}
+	}
+
 }
 /* USER CODE END 4 */
 
