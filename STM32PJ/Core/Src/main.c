@@ -220,6 +220,19 @@ void updateLEDMatrix (int index ){
 			break ;
 	}
 }
+// update matrix buffer
+void updateMatrixBuffer()
+{
+	uint8_t temp = matrix_buffer[0];
+	matrix_buffer[0] = matrix_buffer[1];
+	matrix_buffer[1] = matrix_buffer[2];
+	matrix_buffer[2] = matrix_buffer[3];
+	matrix_buffer[3] = matrix_buffer[4];
+	matrix_buffer[4] = matrix_buffer[5];
+	matrix_buffer[5] = matrix_buffer[6];
+	matrix_buffer[6] = matrix_buffer[7];
+	matrix_buffer[7] = temp;
+}
 // display 7 SEG
 void display7SEG(int num)
 {
@@ -418,6 +431,7 @@ int main(void)
   setTimer1(100);
   setTimer2(25);
   setTimer3(10);
+  setTimer4(80);
   updateClockBuffer ();
   while (1)
   {
@@ -479,7 +493,11 @@ int main(void)
 		  index_led_matrix++;
 		  if (index_led_matrix >= MAX_LED_MATRIX) index_led_matrix = 0;
 	  }
-
+	  if (timer4_flag == 1)
+	  {
+		  setTimer4(80);
+		  updateMatrixBuffer();
+	  }
 
 
 
